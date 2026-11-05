@@ -14,7 +14,7 @@ An end-to-end data project: relational database design (PostgreSQL), an ETL pipe
 - [x] Synthetic data generator ([`etl/generate_data.py`](etl/generate_data.py))
 - [x] ETL pipeline with data-quality checks ([`etl/load_data.py`](etl/load_data.py))
 - [x] Business analysis in SQL ([`sql/02_analysis.sql`](sql/02_analysis.sql))
-- [ ] Dashboard
+- [x] Dashboard ([`dashboard/app.py`](dashboard/app.py))
 - [ ] Findings & recommendations
 
 ## How to run
@@ -31,4 +31,7 @@ pip install -r requirements.txt
 # 3. Generate data and load it into the database
 python etl/generate_data.py
 python etl/load_data.py
+
+# 4. Start the dashboard
+streamlit run dashboard/app.py
 ```
