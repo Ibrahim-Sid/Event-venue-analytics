@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Generated data (reproducible via etl/generate_data.py)
+data/raw/*.csv
+
+# Secrets / local config
+.env
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
