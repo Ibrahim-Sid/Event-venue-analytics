@@ -11,7 +11,7 @@ An end-to-end data project: relational database design (PostgreSQL), an ETL pipe
 🚧 Work in progress
 
 - [x] Data model: ER diagram and PostgreSQL schema ([`docs/er_diagram.md`](docs/er_diagram.md), [`sql/01_schema.sql`](sql/01_schema.sql))
-- [ ] Synthetic data generator
+- [x] Synthetic data generator ([`etl/generate_data.py`](etl/generate_data.py))
 - [ ] ETL pipeline with data-quality checks
 - [ ] Business analysis in SQL
 - [ ] Dashboard
