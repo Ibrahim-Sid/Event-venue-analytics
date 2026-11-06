@@ -1,0 +1,28 @@
+table 'Event Types'
+	lineageTag: 66db8914-62be-5d46-aad9-9aa28d57f224
+
+	column event_type_id
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 4c7cf069-ebde-59fa-874c-7788beefff35
+		summarizeBy: none
+		sourceColumn: event_type_id
+
+	column name
+		dataType: string
+		lineageTag: f9bbd423-93cb-5f35-b02f-23ca4c446ec2
+		summarizeBy: none
+		sourceColumn: name
+
+	partition 'Event Types' = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataPath & "event_types.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"event_type_id", Int64.Type}, {"name", type text}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,27 @@
+relationship 53fac7d6-6bfd-5e09-918f-b888604b32ab
+	fromColumn: Events.customer_id
+	toColumn: Customers.customer_id
+
+relationship a6f00ce1-1d05-5259-b4f3-9be3a42f2320
+	fromColumn: Events.event_type_id
+	toColumn: 'Event Types'.event_type_id
+
+relationship bfa18b07-1c96-588f-843b-ab78c3d51c87
+	fromColumn: Events.start_date
+	toColumn: 'Date'.'Date'
+
+relationship 1fd5ce1e-e0f1-5d69-ae14-9d838cc7d162
+	fromColumn: 'Event Rooms'.event_id
+	toColumn: Events.event_id
+
+relationship ec086211-c3f3-54c7-8ea9-ec0fe5ba15a5
+	fromColumn: 'Event Rooms'.room_id
+	toColumn: Rooms.room_id
+
+relationship 066f69f1-7825-5da0-94bf-47061d8efe5c
+	fromColumn: 'Event Services'.event_id
+	toColumn: Events.event_id
+
+relationship c8df91e1-ab4b-5618-bce7-d2f80e9bb079
+	fromColumn: 'Event Services'.service_id
+	toColumn: Services.service_id

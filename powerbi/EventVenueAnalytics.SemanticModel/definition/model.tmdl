@@ -1,0 +1,20 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["DataFolder", "DataPath", "Customers", "Event Types", "Rooms", "Services", "Events", "Event Rooms", "Event Services", "Date"]
+
+ref table Customers
+ref table 'Event Types'
+ref table Rooms
+ref table Services
+ref table Events
+ref table 'Event Rooms'
+ref table 'Event Services'
+ref table 'Date'

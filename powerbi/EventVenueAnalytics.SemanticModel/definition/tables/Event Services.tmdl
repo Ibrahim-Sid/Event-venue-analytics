@@ -1,0 +1,64 @@
+table 'Event Services'
+	lineageTag: 626e80c5-8516-58bc-8c5e-0f219e809e14
+
+	column event_id
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 4ef6a166-e4d1-59e6-b0f1-6eb0456963f5
+		summarizeBy: none
+		sourceColumn: event_id
+
+	column service_id
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 1e3e620b-9e62-5312-b3ce-7c900f708e69
+		summarizeBy: none
+		sourceColumn: service_id
+
+	column quantity
+		dataType: int64
+		formatString: #,0
+		lineageTag: 109cd3ac-499a-52d9-925b-0cef90bed80b
+		summarizeBy: sum
+		sourceColumn: quantity
+
+	column unit_price_eur
+		dataType: double
+		formatString: €#,0.00
+		lineageTag: cd57c17f-8c02-5dae-9695-75a54969d525
+		summarizeBy: sum
+		sourceColumn: unit_price_eur
+
+	column line_revenue
+		dataType: double
+		formatString: €#,0
+		lineageTag: ef44f756-0881-54ef-9edb-4de60d72b74f
+		summarizeBy: sum
+		sourceColumn: line_revenue
+
+	column line_cost
+		dataType: double
+		formatString: €#,0
+		lineageTag: 93b28081-c07f-52cc-bbaa-d573e03d7b16
+		summarizeBy: sum
+		sourceColumn: line_cost
+
+	partition 'Event Services' = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataPath & "event_services.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"event_id", Int64.Type}, {"service_id", Int64.Type}, {"quantity", Int64.Type}, {"unit_price_eur", type number}}, "en-US"),
+					Svc = Table.TransformColumnTypes(Table.PromoteHeaders(Csv.Document(File.Contents(DataPath & "services.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]), [PromoteAllScalars = true]), {{"service_id", Int64.Type}, {"unit_cost_eur", type number}}, "en-US"),
+					Joined = Table.NestedJoin(Typed, {"service_id"}, Svc, {"service_id"}, "svc", JoinKind.LeftOuter),
+					Expanded = Table.ExpandTableColumn(Joined, "svc", {"unit_cost_eur"}),
+					Revenue = Table.AddColumn(Expanded, "line_revenue", each [quantity] * [unit_price_eur], type number),
+					Cost = Table.AddColumn(Revenue, "line_cost", each [quantity] * [unit_cost_eur], type number),
+					Result = Table.RemoveColumns(Cost, {"unit_cost_eur"})
+				in
+					Result
+
+	annotation PBI_ResultType = Table

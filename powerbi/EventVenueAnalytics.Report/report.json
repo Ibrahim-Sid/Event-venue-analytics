@@ -1,0 +1,192 @@
+{
+  "config": "{\"version\": \"5.59\", \"themeCollection\": {}, \"activeSectionIndex\": 0, \"defaultDrillFilterOtherVisuals\": true, \"settings\": {\"useNewFilterPaneExperience\": true, \"allowChangeFilterTypes\": true, \"useStylableVisualContainerHeader\": true, \"exportDataMode\": 1}}",
+  "layoutOptimization": 0,
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Overview",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.0,
+      "name": "ReportSectionOverview",
+      "ordinal": 0,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 0,
+          "width": 700,
+          "height": 50,
+          "config": "{\"name\": \"title1\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 0, \"width\": 700, \"height\": 50}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Event Venue Analytics \\u2013 Overview\", \"textStyle\": {\"fontSize\": \"20pt\", \"fontWeight\": \"bold\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 760,
+          "y": 10,
+          "z": 0,
+          "width": 240,
+          "height": 60,
+          "config": "{\"name\": \"slYear\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 760, \"y\": 10, \"z\": 0, \"width\": 240, \"height\": 60}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"Date.Year\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"Date\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Year\"}, \"Name\": \"Date.Year\"}]}, \"drillFilterOtherVisuals\": true, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Basic'\"}}}}}], \"selection\": [{\"properties\": {\"strictSingleSelect\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 1020,
+          "y": 10,
+          "z": 0,
+          "width": 240,
+          "height": 60,
+          "config": "{\"name\": \"slType\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 10, \"z\": 0, \"width\": 240, \"height\": 60}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"Event Types.name\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"Event Types\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"name\"}, \"Name\": \"Event Types.name\"}]}, \"drillFilterOtherVisuals\": true, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Basic'\"}}}}}], \"selection\": [{\"properties\": {\"strictSingleSelect\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 80,
+          "z": 0,
+          "width": 240,
+          "height": 100,
+          "config": "{\"name\": \"kpi0\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 80, \"z\": 0, \"width\": 240, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"Events.Revenue\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"Events\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Revenue\"}, \"Name\": \"Events.Revenue\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]"
+        },
+        {
+          "x": 270,
+          "y": 80,
+          "z": 0,
+          "width": 240,
+          "height": 100,
+          "config": "{\"name\": \"kpi1\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 270, \"y\": 80, \"z\": 0, \"width\": 240, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"Events.Gross Margin %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"Events\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Gross Margin %\"}, \"Name\": \"Events.Gross Margin %\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]"
+        },
+        {
+          "x": 520,
+          "y": 80,
+          "z": 0,
+          "width": 240,
+          "height": 100,
+          "config": "{\"name\": \"kpi2\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 520, \"y\": 80, \"z\": 0, \"width\": 240, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"Events.Events\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"Events\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Events\"}, \"Name\": \"Events.Events\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]"
+        },
+        {
+          "x": 770,
+          "y": 80,
+          "z": 0,
+          "width": 240,
+          "height": 100,
+          "config": "{\"name\": \"kpi3\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 770, \"y\": 80, \"z\": 0, \"width\": 240, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"Events.Cancellation Rate\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"Events\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Cancellation Rate\"}, \"Name\": \"Events.Cancellation Rate\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]"
+        },
+        {
+          "x": 1020,
+          "y": 80,
+          "z": 0,
+          "width": 240,
+          "height": 100,
+          "config": "{\"name\": \"kpi4\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 80, \"z\": 0, \"width\": 240, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"Events.Show-up Rate\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"Events\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Show-up Rate\"}, \"Name\": \"Events.Show-up Rate\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 195,
+          "z": 0,
+          "width": 615,
+          "height": 250,
+          "config": "{\"name\": \"revType\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 195, \"z\": 0, \"width\": 615, \"height\": 250}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"projections\": {\"Category\": [{\"queryRef\": \"Event Types.name\"}], \"Y\": [{\"queryRef\": \"Events.Revenue\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"Event Types\", \"Type\": 0}, {\"Name\": \"t1\", \"Entity\": \"Events\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"name\"}, \"Name\": \"Event Types.name\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t1\"}}, \"Property\": \"Revenue\"}, \"Name\": \"Events.Revenue\"}], \"OrderBy\": [{\"Direction\": 2, \"Expression\": {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t1\"}}, \"Property\": \"Revenue\"}}}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Revenue by event type'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 645,
+          "y": 195,
+          "z": 0,
+          "width": 615,
+          "height": 250,
+          "config": "{\"name\": \"season\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 645, \"y\": 195, \"z\": 0, \"width\": 615, \"height\": 250}}], \"singleVisual\": {\"visualType\": \"lineChart\", \"projections\": {\"Category\": [{\"queryRef\": \"Date.Month\"}], \"Series\": [{\"queryRef\": \"Date.Year\"}], \"Y\": [{\"queryRef\": \"Events.Revenue\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"Date\", \"Type\": 0}, {\"Name\": \"t1\", \"Entity\": \"Events\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Month\"}, \"Name\": \"Date.Month\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Year\"}, \"Name\": \"Date.Year\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t1\"}}, \"Property\": \"Revenue\"}, \"Name\": \"Events.Revenue\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Seasonality \\u2013 revenue per month'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 455,
+          "z": 0,
+          "width": 615,
+          "height": 255,
+          "config": "{\"name\": \"util\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 455, \"z\": 0, \"width\": 615, \"height\": 255}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"projections\": {\"Category\": [{\"queryRef\": \"Rooms.room_name\"}], \"Y\": [{\"queryRef\": \"Events.Room Utilization %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"Rooms\", \"Type\": 0}, {\"Name\": \"t1\", \"Entity\": \"Events\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"room_name\"}, \"Name\": \"Rooms.room_name\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t1\"}}, \"Property\": \"Room Utilization %\"}, \"Name\": \"Events.Room Utilization %\"}], \"OrderBy\": [{\"Direction\": 2, \"Expression\": {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t1\"}}, \"Property\": \"Room Utilization %\"}}}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Room utilization (booked days)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 645,
+          "y": 455,
+          "z": 0,
+          "width": 615,
+          "height": 255,
+          "config": "{\"name\": \"cancel\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 645, \"y\": 455, \"z\": 0, \"width\": 615, \"height\": 255}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"projections\": {\"Category\": [{\"queryRef\": \"Events.Lead Time Bucket\"}], \"Y\": [{\"queryRef\": \"Events.Cancellation Rate\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"Events\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Lead Time Bucket\"}, \"Name\": \"Events.Lead Time Bucket\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Cancellation Rate\"}, \"Name\": \"Events.Cancellation Rate\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Cancellation rate by booking lead time'\"}}}}}]}}}",
+          "filters": "[]"
+        }
+      ],
+      "width": 1280.0
+    },
+    {
+      "config": "{}",
+      "displayName": "Customers & Services",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.0,
+      "name": "ReportSectionCustomers",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 0,
+          "width": 700,
+          "height": 50,
+          "config": "{\"name\": \"title2\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 0, \"width\": 700, \"height\": 50}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Customers & Services\", \"textStyle\": {\"fontSize\": \"20pt\", \"fontWeight\": \"bold\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 760,
+          "y": 10,
+          "z": 0,
+          "width": 240,
+          "height": 60,
+          "config": "{\"name\": \"slYear2\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 760, \"y\": 10, \"z\": 0, \"width\": 240, \"height\": 60}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"Date.Year\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"Date\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Year\"}, \"Name\": \"Date.Year\"}]}, \"drillFilterOtherVisuals\": true, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Basic'\"}}}}}], \"selection\": [{\"properties\": {\"strictSingleSelect\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 1020,
+          "y": 10,
+          "z": 0,
+          "width": 240,
+          "height": 60,
+          "config": "{\"name\": \"slCtype\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 10, \"z\": 0, \"width\": 240, \"height\": 60}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"Customers.customer_type\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"Customers\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"customer_type\"}, \"Name\": \"Customers.customer_type\"}]}, \"drillFilterOtherVisuals\": true, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Basic'\"}}}}}], \"selection\": [{\"properties\": {\"strictSingleSelect\": {\"expr\": {\"Literal\": {\"Value\": \"false\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 80,
+          "z": 0,
+          "width": 700,
+          "height": 630,
+          "config": "{\"name\": \"topCust\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 80, \"z\": 0, \"width\": 700, \"height\": 630}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"projections\": {\"Values\": [{\"queryRef\": \"Customers.company_name\"}, {\"queryRef\": \"Customers.customer_type\"}, {\"queryRef\": \"Events.Events\"}, {\"queryRef\": \"Events.Revenue\"}, {\"queryRef\": \"Events.Revenue Share %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"Customers\", \"Type\": 0}, {\"Name\": \"t1\", \"Entity\": \"Events\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"company_name\"}, \"Name\": \"Customers.company_name\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"customer_type\"}, \"Name\": \"Customers.customer_type\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t1\"}}, \"Property\": \"Events\"}, \"Name\": \"Events.Events\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t1\"}}, \"Property\": \"Revenue\"}, \"Name\": \"Events.Revenue\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t1\"}}, \"Property\": \"Revenue Share %\"}, \"Name\": \"Events.Revenue Share %\"}], \"OrderBy\": [{\"Direction\": 2, \"Expression\": {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t1\"}}, \"Property\": \"Revenue\"}}}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Customers by revenue'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 735,
+          "y": 80,
+          "z": 0,
+          "width": 525,
+          "height": 310,
+          "config": "{\"name\": \"attach\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 735, \"y\": 80, \"z\": 0, \"width\": 525, \"height\": 310}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"projections\": {\"Category\": [{\"queryRef\": \"Services.name\"}], \"Y\": [{\"queryRef\": \"Events.Service Attach Rate\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"Services\", \"Type\": 0}, {\"Name\": \"t1\", \"Entity\": \"Events\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"name\"}, \"Name\": \"Services.name\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t1\"}}, \"Property\": \"Service Attach Rate\"}, \"Name\": \"Events.Service Attach Rate\"}], \"OrderBy\": [{\"Direction\": 2, \"Expression\": {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t1\"}}, \"Property\": \"Service Attach Rate\"}}}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Service attach rate'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 735,
+          "y": 400,
+          "z": 0,
+          "width": 525,
+          "height": 310,
+          "config": "{\"name\": \"perHead\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 735, \"y\": 400, \"z\": 0, \"width\": 525, \"height\": 310}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"projections\": {\"Category\": [{\"queryRef\": \"Event Types.name\"}], \"Y\": [{\"queryRef\": \"Events.Revenue per Attendee\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"Event Types\", \"Type\": 0}, {\"Name\": \"t1\", \"Entity\": \"Events\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"name\"}, \"Name\": \"Event Types.name\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t1\"}}, \"Property\": \"Revenue per Attendee\"}, \"Name\": \"Events.Revenue per Attendee\"}], \"OrderBy\": [{\"Direction\": 2, \"Expression\": {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t1\"}}, \"Property\": \"Revenue per Attendee\"}}}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Revenue per attendee'\"}}}}}]}}}",
+          "filters": "[]"
+        }
+      ],
+      "width": 1280.0
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+table 'Event Rooms'
+	lineageTag: 6ca9deb1-6e69-5d5a-b160-cf0803fbc18d
+
+	column event_id
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: d9c71619-86b3-5ff5-b333-3e5c23bbfc78
+		summarizeBy: none
+		sourceColumn: event_id
+
+	column room_id
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 69e57043-8506-5997-a891-444f7b44e4d2
+		summarizeBy: none
+		sourceColumn: room_id
+
+	column days
+		dataType: int64
+		formatString: 0
+		lineageTag: 58f564f7-0cd1-5d9f-935b-d73f66da6832
+		summarizeBy: sum
+		sourceColumn: days
+
+	column price_eur
+		dataType: double
+		formatString: €#,0
+		lineageTag: 3282b235-c6fc-5a70-95bb-68b8f1d0aef3
+		summarizeBy: sum
+		sourceColumn: price_eur
+
+	partition 'Event Rooms' = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataPath & "event_rooms.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"event_id", Int64.Type}, {"room_id", Int64.Type}, {"days", Int64.Type}, {"price_eur", type number}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

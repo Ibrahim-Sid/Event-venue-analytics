@@ -1,0 +1,13 @@
+expression DataFolder = "C:\Users\YOUR-NAME\event-venue-analytics\data\raw" meta [IsParameterQuery = true, Type = "Text", IsParameterQueryRequired = true]
+	lineageTag: b3f57fd6-d68b-5ce7-bf3e-58b2d7db3bc6
+
+	annotation PBI_ResultType = Text
+
+expression DataPath =
+		let
+			Path = if Text.EndsWith(DataFolder, "\") then DataFolder else DataFolder & "\"
+		in
+			Path
+	lineageTag: 51bceb0b-70f5-50f3-98bd-8fe79d629e05
+
+	annotation PBI_ResultType = Text

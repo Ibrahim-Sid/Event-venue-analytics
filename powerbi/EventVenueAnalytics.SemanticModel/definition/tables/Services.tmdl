@@ -1,0 +1,48 @@
+table Services
+	lineageTag: d5774454-1f19-50be-ba00-64ec995509f5
+
+	column service_id
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 13cf4d40-2b36-55d9-85a0-759244e18032
+		summarizeBy: none
+		sourceColumn: service_id
+
+	column name
+		dataType: string
+		lineageTag: 2818a673-9ecc-55f4-9b0e-0eefd389fe7d
+		summarizeBy: none
+		sourceColumn: name
+
+	column unit
+		dataType: string
+		lineageTag: 887f3ec1-4517-5bb6-91ba-09f14e123599
+		summarizeBy: none
+		sourceColumn: unit
+
+	column unit_price_eur
+		dataType: double
+		formatString: €#,0.00
+		lineageTag: 383434ea-f1fa-5e0c-942f-4f8fd301a17a
+		summarizeBy: sum
+		sourceColumn: unit_price_eur
+
+	column unit_cost_eur
+		dataType: double
+		formatString: €#,0.00
+		lineageTag: 2197b9a3-ca34-5b0f-9f7b-7ba6e026a270
+		summarizeBy: sum
+		sourceColumn: unit_cost_eur
+
+	partition Services = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataPath & "services.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"service_id", Int64.Type}, {"name", type text}, {"unit", type text}, {"unit_price_eur", type number}, {"unit_cost_eur", type number}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

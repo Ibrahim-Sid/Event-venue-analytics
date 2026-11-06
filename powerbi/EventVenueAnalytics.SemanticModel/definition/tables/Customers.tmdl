@@ -1,0 +1,46 @@
+table Customers
+	lineageTag: 2468eb35-bb62-5fe6-b834-d9b4ed7e9ad1
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: de84972f-ff7e-5cd5-ac52-d0d6c880fcdb
+		summarizeBy: none
+		sourceColumn: customer_id
+
+	column company_name
+		dataType: string
+		lineageTag: 69266c1a-e827-5277-aeb3-a051502f8e54
+		summarizeBy: none
+		sourceColumn: company_name
+
+	column industry
+		dataType: string
+		lineageTag: e341edc5-b193-5676-ac3d-56e0afaecd0f
+		summarizeBy: none
+		sourceColumn: industry
+
+	column customer_type
+		dataType: string
+		lineageTag: 3ac6db84-5e4b-5977-9e7a-f19021e0e316
+		summarizeBy: none
+		sourceColumn: customer_type
+
+	column city
+		dataType: string
+		lineageTag: 8d321b29-5ded-5d2d-9f00-176c0250a68e
+		summarizeBy: none
+		sourceColumn: city
+
+	partition Customers = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataPath & "customers.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"customer_id", Int64.Type}, {"company_name", type text}, {"industry", type text}, {"customer_type", type text}, {"city", type text}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table

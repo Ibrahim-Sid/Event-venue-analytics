@@ -1,0 +1,59 @@
+table 'Date'
+	lineageTag: a369cb4a-486c-5704-be0e-59558463e8d3
+	dataCategory: Time
+
+	column 'Date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		isKey
+		lineageTag: df5d0c9e-6a3b-500e-a2b2-459a83531ac5
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: c2e958e9-0ad3-565f-a5ed-6ff60b9b353e
+		summarizeBy: none
+		sourceColumn: Year
+
+	column 'Month Number'
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 62b1ab64-e6b2-5afd-92c3-33937961293a
+		summarizeBy: none
+		sourceColumn: Month Number
+
+	column Month
+		dataType: string
+		lineageTag: dccf6fcb-a14b-57d7-86c7-f0894346d5c2
+		summarizeBy: none
+		sourceColumn: Month
+		sortByColumn: 'Month Number'
+
+	column Quarter
+		dataType: string
+		lineageTag: deb7abb3-f88d-5a9a-9662-b9e4b2b9cefd
+		summarizeBy: none
+		sourceColumn: Quarter
+
+	partition 'Date' = m
+		mode: import
+		source =
+				let
+					StartDate = #date(2023, 1, 1),
+					EndDate = #date(2025, 12, 31),
+					Dates = List.Dates(StartDate, Duration.Days(EndDate - StartDate) + 1, #duration(1, 0, 0, 0)),
+					AsTable = Table.FromList(Dates, Splitter.SplitByNothing(), {"Date"}),
+					Typed = Table.TransformColumnTypes(AsTable, {{"Date", type date}}),
+					Year = Table.AddColumn(Typed, "Year", each Date.Year([Date]), Int64.Type),
+					MonthNo = Table.AddColumn(Year, "Month Number", each Date.Month([Date]), Int64.Type),
+					Month = Table.AddColumn(MonthNo, "Month", each Date.ToText([Date], "MMM", "en-US"), type text),
+					Quarter = Table.AddColumn(Month, "Quarter", each "Q" & Text.From(Date.QuarterOfYear([Date])), type text)
+				in
+					Quarter
+
+	annotation PBI_ResultType = Table

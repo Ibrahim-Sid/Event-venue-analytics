@@ -1,0 +1,196 @@
+table Events
+	lineageTag: 0f285e8c-4a34-571e-984f-8537025a88ca
+
+	measure 'Room Revenue' = SUM('Event Rooms'[price_eur])
+		formatString: €#,0
+		displayFolder: Finance
+		lineageTag: f5ece716-32e9-5ab0-bd93-cb7537561882
+
+	measure 'Service Revenue' = SUM('Event Services'[line_revenue])
+		formatString: €#,0
+		displayFolder: Finance
+		lineageTag: 88faaf18-41b9-5c3e-8bff-78fd17e33810
+
+	measure 'Service Cost' = SUM('Event Services'[line_cost])
+		formatString: €#,0
+		displayFolder: Finance
+		lineageTag: ad4edf17-b5d9-5df3-8c4e-43331b521a44
+
+	measure Revenue = [Room Revenue] + [Service Revenue]
+		formatString: €#,0
+		displayFolder: Finance
+		lineageTag: ab7abb88-857d-5463-8535-73b8f1f904de
+
+	measure 'Gross Margin' = [Revenue] - [Service Cost]
+		formatString: €#,0
+		displayFolder: Finance
+		lineageTag: ee4220a9-3055-574f-a290-9c6a8cae324a
+
+	measure 'Gross Margin %' = DIVIDE([Gross Margin], [Revenue])
+		formatString: 0.0%
+		displayFolder: Finance
+		lineageTag: b09102f1-c790-59d9-8354-26f9ba27a2ae
+
+	measure 'Revenue PY' = CALCULATE([Revenue], SAMEPERIODLASTYEAR('Date'[Date]))
+		formatString: €#,0
+		displayFolder: Finance
+		lineageTag: f7d82116-1140-5629-aa18-6a313be3d788
+
+	measure 'Revenue YoY %' = DIVIDE([Revenue] - [Revenue PY], [Revenue PY])
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Finance
+		lineageTag: ac9516c9-9505-5df2-9ff0-18d072fd543c
+
+	measure 'Revenue Share %' = DIVIDE([Revenue], CALCULATE([Revenue], ALL(Customers)))
+		formatString: 0.0%
+		displayFolder: Finance
+		lineageTag: 88974bc7-440f-5ac0-b76c-2e3d72512bc1
+
+	measure 'Revenue per Attendee' = DIVIDE([Revenue], SUM(Events[actual_attendees]))
+		formatString: €#,0.00
+		displayFolder: Finance
+		lineageTag: 8f9ca180-1c8f-51ec-9786-f03cb21790c3
+
+	measure Events = CALCULATE(COUNTROWS(Events), Events[status] = "completed")
+		formatString: #,0
+		displayFolder: Operations
+		lineageTag: 60e31f6e-2f26-5ec9-b470-59ce1b7bbd02
+
+	measure Bookings = COUNTROWS(Events)
+		formatString: #,0
+		displayFolder: Operations
+		lineageTag: 194eedfe-d1ff-5044-a85f-90dd424c7f7a
+
+	measure 'Cancellation Rate' = DIVIDE(CALCULATE(COUNTROWS(Events), Events[status] = "cancelled"), [Bookings])
+		formatString: 0.0%
+		displayFolder: Operations
+		lineageTag: 2012eaee-33a7-52a5-904e-4a55e0e253fd
+
+	measure 'Show-up Rate' = DIVIDE(SUM(Events[actual_attendees]), CALCULATE(SUM(Events[expected_attendees]), Events[status] = "completed"))
+		formatString: 0.0%
+		displayFolder: Operations
+		lineageTag: f12b41a4-9571-5280-94df-6c569c76f3c1
+
+	measure 'Room Utilization %' = DIVIDE(SUM('Event Rooms'[days]), COUNTROWS('Date') * COUNTROWS(Rooms))
+		formatString: 0.0%
+		displayFolder: Operations
+		lineageTag: 35ad5207-ef99-5800-838e-c651216b3500
+
+	measure 'Service Attach Rate' = DIVIDE(DISTINCTCOUNT('Event Services'[event_id]), [Events])
+		formatString: 0.0%
+		displayFolder: Operations
+		lineageTag: d75507af-ee5b-5626-8b2e-bd4105eced46
+
+	column event_id
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: d7059f57-cbb4-5d4e-a41c-3e1bddbf29c5
+		summarizeBy: none
+		sourceColumn: event_id
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 964d99fc-87f2-5ebc-adad-68011a5f3bef
+		summarizeBy: none
+		sourceColumn: customer_id
+
+	column event_type_id
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: f837a787-67c9-5bbb-98c2-738b2ed060d0
+		summarizeBy: none
+		sourceColumn: event_type_id
+
+	column event_name
+		dataType: string
+		lineageTag: ecb7c15f-97ad-5db9-9bb2-09e0d4097215
+		summarizeBy: none
+		sourceColumn: event_name
+
+	column booked_at
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: c62e15c6-4f44-5573-bba7-5d8a423c9ed0
+		summarizeBy: none
+		sourceColumn: booked_at
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column start_date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 7e37aefa-e6ae-5dd4-939e-150bed9a20d5
+		summarizeBy: none
+		sourceColumn: start_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column end_date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 98f711ef-8eb8-5e40-bf3c-47cd4d701af1
+		summarizeBy: none
+		sourceColumn: end_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column expected_attendees
+		dataType: int64
+		formatString: #,0
+		lineageTag: c00add05-94c1-5802-b30a-5646ed3d901e
+		summarizeBy: sum
+		sourceColumn: expected_attendees
+
+	column actual_attendees
+		dataType: int64
+		formatString: #,0
+		lineageTag: 3a34361a-ad53-5095-a673-e07da9723b77
+		summarizeBy: sum
+		sourceColumn: actual_attendees
+
+	column status
+		dataType: string
+		lineageTag: 703f7fea-0b36-535d-be8d-efd5bfd91758
+		summarizeBy: none
+		sourceColumn: status
+
+	column lead_time_days
+		dataType: int64
+		formatString: 0
+		lineageTag: 604c075e-b4fd-5c1a-9625-95224b9abc32
+		summarizeBy: none
+		sourceColumn: lead_time_days
+
+	column 'Lead Time Bucket'
+		dataType: string
+		lineageTag: 392c5f14-d257-5c38-a673-fd3e0ff0561d
+		summarizeBy: none
+		sourceColumn: Lead Time Bucket
+		sortByColumn: 'Lead Time Order'
+
+	column 'Lead Time Order'
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: f21fa8d0-94bc-54a7-969a-c900503da2c8
+		summarizeBy: none
+		sourceColumn: Lead Time Order
+
+	partition Events = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents(DataPath & "events.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"event_id", Int64.Type}, {"customer_id", Int64.Type}, {"event_type_id", Int64.Type}, {"event_name", type text}, {"booked_at", type date}, {"start_date", type date}, {"end_date", type date}, {"expected_attendees", Int64.Type}, {"actual_attendees", Int64.Type}, {"status", type text}}, "en-US"),
+					Lead = Table.AddColumn(Typed, "lead_time_days", each Duration.Days([start_date] - [booked_at]), Int64.Type),
+					Bucket = Table.AddColumn(Lead, "Lead Time Bucket", each if [lead_time_days] < 60 then "< 2 months" else if [lead_time_days] < 180 then "2-6 months" else if [lead_time_days] < 365 then "6-12 months" else "> 12 months", type text),
+					Ordered = Table.AddColumn(Bucket, "Lead Time Order", each if [lead_time_days] < 60 then 1 else if [lead_time_days] < 180 then 2 else if [lead_time_days] < 365 then 3 else 4, Int64.Type)
+				in
+					Ordered
+
+	annotation PBI_ResultType = Table
